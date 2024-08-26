@@ -2,8 +2,9 @@
   <div>Logo</div>
   <nav>
     <a href="#">Features</a>
-    <a href="#">Pricing</a>
-    <a href="#">Documentation</a>
+
+    <a href="#" (click)="$event.preventDefault(); openLoginPage()">Ouvrir la page de connexion</a>
+    <a [routerLink]="['/login#']">Se connecter</a>
   </nav>
   <div class="header-button">
     <button>Login</button>
@@ -20,9 +21,9 @@
   <button>Démarrer !</button>
 </section>
 
-<section>
-  <app-estimator></app-estimator>
-</section>
+<main>
+  <router-outlet></router-outlet>
+</main>
 
 <section class="features">
   <h2>Features</h2>

@@ -25,6 +25,31 @@ export function app(): express.Express {
     index: 'index.html',
   }));
 
+  // Route spécifique pour /login pour ouvrir dans un nouvel onglet
+  server.get('/login*', (req, res) => {
+    // Construire l'URL complète pour /login
+    const loginUrl = `${req.protocol}://${req.headers.host}/login`;
+
+    // Envoyer une page HTML avec redirection
+    res.send(`
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>Redirection</title>
+        <script>
+          // Ouvrir /login dans un nouvel onglet
+          window.open('${loginUrl}', '_blank');
+          // Rediriger la page actuelle vers la racine
+          window.location.href = '/'; 
+        </script>
+      </head>
+      <body>
+        Redirection en cours...
+      </body>
+      </html>
+    `);
+  });
+
   // All regular routes use the Angular engine
   server.get('**', (req, res, next) => {
     const { protocol, originalUrl, baseUrl, headers } = req;
@@ -45,7 +70,7 @@ export function app(): express.Express {
 }
 
 function run(): void {
-  const port = process.env['PORT'] || 4000;
+  const port = process.env['PORT'] ?? 4000;
 
   // Start up the Node server
   const server = app();

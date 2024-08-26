@@ -1,1 +1,15 @@
-<p>estimator works!</p>
+<article>
+    <h2>Estimateur de Devis</h2>
+    <label for="hourlyRate">Tarif Horaire (€):</label>
+    <input type="number" id="hourlyRate" [(ngModel)]="hourlyRate">
+
+    <label for="dailyRate">TJM (€):</label>
+    <input type="number" id="dailyRate" [(ngModel)]="dailyRate">
+
+    <label for="hours">Nombre d'heures:</label>
+    <input type="number" id="hours" [(ngModel)]="hours">
+
+    <button (click)="calculateEstimate()">Calculer</button>
+
+    <h3>Total Estimé: {{ total }} €</h3>
+</article>
